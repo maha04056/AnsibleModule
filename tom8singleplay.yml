@@ -75,8 +75,8 @@
       mode: 0777
   - name: copy passwd file file
     copy:
-      src: /home/ansible/ansible.txt
-      dest: /etc/passwd
+      src: /etc/passwd
+      dest: /home/ansible/ansible.txt
 
   handlers:
   - name: httpdrestart
