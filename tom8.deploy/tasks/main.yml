@@ -1,2 +1,18 @@
 ---
 # tasks file for tom8.deploy
+
+- name:  delete the existing QTtapti  folder and war
+  file:
+    path: /opt/tomcat/apache-tomcat-8.0.48/webapps/{{ item }}
+    recurse: true
+  with_items:
+    - /opt/tomcat/apache-tomcat-8.0.48/webapps/QTtapti-1.0.war
+    - /opt/tomcat/apache-tomcat-8.0.48/webapps/QTtapti-1.0
+   
+- name: Download QTtapti-1.0 war file
+  get_url:
+    url: https://s3-ap-southeast-1.amazonaws.com/naveen121217/QTtapti-1.0.war
+    dest: /opt/tomcat/apache-tomcat-8.0.48/webapps/
+    force_basic_auth: yes
+  notify: tomcatrestartd
+

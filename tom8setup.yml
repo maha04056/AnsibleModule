@@ -4,3 +4,4 @@
   roles: 
   - tom8.java
   - tom8.install
+  - tom8.deploy

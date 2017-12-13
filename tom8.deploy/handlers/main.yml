@@ -1,2 +1,6 @@
 ---
 # handlers file for tom8.deploy
+- name: tomcatrestartd
+  service:
+    name: tomcat
+    state: restarted
