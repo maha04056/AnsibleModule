@@ -1,0 +1,78 @@
+- hosts: all
+  become: yes
+  vars:
+    debugaval1: register data
+    debugaval2: set facts
+  geather_facts: yes
+  tasks:
+  - name: install basic software for devlopments
+    yum:
+      name: {{items}}
+    with_items:
+      -git
+      -tree
+      -wget
+    ignore_errors: yes
+    tag: genralsoft
+  - name: install httpd on redhat
+    yum:
+      name: "{{redhatwebserver}}"
+      state: present
+    notify:
+      httpdrestart
+      deployindex
+    when: ansible_os_famly =="Redhat"
+    tag: httpdserver
+  - name: install apache2 on ubuntu
+    apt:
+      name: "{{ubuntuwervserver}}"
+      state: present
+      when: ansible_os_family =="Debian"
+    register: reg_apache_result
+    notify: apacherestart
+    tag: apacheserver
+  - name:  dispaly the "{{debugaval1}}" 
+    debug:
+      msg: "{{reg_apache_result}}"
+
+  - name:  dispaly the "{{debugaval2}}" 
+    set_fact: 
+      set_facttest:  set fact vali is "{{redhatwebserver}}"  
+    when: ansible_os_family =="Redhat"
+     
+  - name:  dispaly the "{{debugaval2}}" 
+    set_fact: 
+      set_facttest:  set fact vali is "{{redhatwebserver}}"  
+    when: ansible_os_family =="Debian"  
+  
+  - name:  dispaly the set_facttest values" 
+    debug:
+      msg: "{{set_facttest}}"
+  - name: file create 
+    file: 
+      path: /home/ansible/ansible.txt
+  - name: copy file
+    copy:
+      src: /home/ansible/ansible.txt
+       dest: /etc/passwd
+
+  handlers:
+  - name: httpdrestart
+    service:
+      name: httpd
+      state: restarted
+  - name: apacherestart
+    service:
+      name: apache2
+      state: present
+  - name: deployindex
+    template:
+      src: index.j2
+      dest: /var/www/html/index.html
+       
+
+
+
+
+  
+
