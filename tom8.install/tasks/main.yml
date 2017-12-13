@@ -23,8 +23,6 @@
     src: http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.0.48/bin/apache-tomcat-8.0.48.tar.gz
     dest: /opt/tomcat
     remote_src: yes
-    
-
 - name:  make the tomcat user the owner of the work, temp, and logs directories
   file:
     path: /opt/tomcat/apache-tomcat-8.0.48/{{ item }}
