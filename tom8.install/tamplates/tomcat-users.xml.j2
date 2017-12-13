@@ -17,10 +17,7 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
               version="1.0">
-{% for role in tomcat_roles %}
-    <role rolename="{{role}}"/>
-{% endfor %}
-{% for user in tomcat_users %}
-    <user username="{{user.name}}" password="{{user.password}}" roles="{{user.roles}}"/>
-{% endfor %}
+
+    <user username="{{username}}" password="{{userpassword}}" roles="{{userroles}}"/>
+
 </tomcat-users>
