@@ -29,7 +29,8 @@
   unarchive:
     src: /home/ansible/apache-tomcat-8.0.48.tar.gz
     dest: /opt/tomcat
-    
+    creates: /opt/tomcat/apache-tomcat-8.0.48/test.txt
+
 - name:  make the tomcat user the owner of the work, temp, and logs directories
   file:
     path: /opt/tomcat/apache-tomcat-8.0.48/{{ item }}
