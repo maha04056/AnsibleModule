@@ -1,2 +1,5 @@
 ---
 # defaults file for tom8.install
+username: admin
+userpassword: maha
+userroles: manager-gui,admin-gui
