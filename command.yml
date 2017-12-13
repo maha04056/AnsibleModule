@@ -4,7 +4,4 @@
   tasks:
   - name: for command get IDEOPOTENT
     command: echo "test" > /home/ansible/test
-    args:
-      chdir:  /home/ansible
-      creates: /home/ansible/tt
-
+    creates: /home/ansible/test
