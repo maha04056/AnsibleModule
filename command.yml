@@ -8,5 +8,4 @@
       state: touch
       mode: "u+rw,g-wx,o-rwx"
   - name: for command get 2 IDEOPOTENT
-    command: mv /home/ansible/foo.conf  /home/ansible/foo.dis
-    creates: /home/ansible/foo.dis
+    command: mv /home/ansible/foo.conf  /home/ansible/foo.dis  creates= /home/ansible/foo.dis
