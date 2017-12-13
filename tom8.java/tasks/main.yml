@@ -3,7 +3,7 @@
 - name: redhat update packages 
   yum:
     name: '*'
-    sate: latest
+    state: latest
   when: ansible_os_family =="RedHat"
 
 - name: install  java on redhat {{ javaversion_rehaht7 }}
@@ -15,7 +15,7 @@
 - name: ubuntu  update packages
   apt:
     name: '*'
-    sate: latest
+    state: latest
   when: ansible_os_family =="Debian"
 
 
