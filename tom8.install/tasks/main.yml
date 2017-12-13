@@ -51,7 +51,7 @@
   file:
     path: /opt/tomcat/apache-tomcat-8.0.48/conf
     state: directory
-    mode: "g+W"
+    mode: "g+w"
     recurse: true
 
 - name: create the tomcat.service RedHat
