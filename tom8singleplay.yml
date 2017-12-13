@@ -14,6 +14,16 @@
       - tree
       - wget
     ignore_errors: yes
+    when: ansible_os_family =="RedHat"
+  - name: install basic software for devlopments
+    apt:
+      name: "{{ item }}"
+    with_items:
+      - git
+      - tree
+      - wget
+    ignore_errors: yes
+    when: ansible_os_family =="Debian"
     tags: genralsoft
   - name: install httpd on redhat
     yum:
@@ -22,7 +32,7 @@
     notify:
       httpdrestart
       deployindex
-    when: ansible_os_famly =="RedHat"
+    when: ansible_os_family =="RedHat"
     tags: httpdserver
   - name: install apache2 on ubuntu
     apt:
