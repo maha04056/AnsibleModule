@@ -64,7 +64,7 @@
 
 - name: create the tomcat-user-xml  
   template:
-    src: tamplates/tomcat.tomcat-users.xml.j2
+    src: tamplates/tomcat-users.xml.j2
     dest: /opt/tomcat/conf/tomcat-users.xml
   notify: tomcatrestart
  
