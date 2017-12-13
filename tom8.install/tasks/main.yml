@@ -40,7 +40,9 @@
   file:
     path: /opt/tomcat/apache-tomcat-8.0.48
     state: director
+    owner: tomcat
     group: tomcat 
+    mode: 0755
     recurse: true
 
 - name: the tomcat user write access to the conf directory, and read access to the files
