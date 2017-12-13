@@ -3,3 +3,4 @@
   become: yes
   roles: 
   - tom8.java
+  - tom8.install
