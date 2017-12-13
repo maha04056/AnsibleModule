@@ -2,6 +2,9 @@
 - hosts: all
   become: yes
   tasks:
-  - name: for command get IDEOPOTENT
-    command: echo "test" > /home/ansible/test
-    creates: /home/ansible/test
+  - name: for command get 1 IDEOPOTENT
+    command: touch /home/ansible/testcmd1.conf
+    creates: /home/ansible/testcmd.conf
+  - name: for command get 2 IDEOPOTENT
+    command: echo "jfskdfjs" /home/ansible/testcmd2.conf
+    creates: /home/ansible/testcmd2.conf
