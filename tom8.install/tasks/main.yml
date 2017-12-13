@@ -56,21 +56,21 @@
     mode: "g+x"
 
 - name: create the tomcat.service RedHat
-  tamplate: 
+  template: 
     src: tamplates/tomcat.service.j2
     dest: /etc/systemd/system/tomcat.service
   notify: tomcatrestart
   when: ansible_os_family == "RedHat"
 
 - name: create the tomcat.conf  Debian
-  tamplate:
+  template:
     src: tamplates/tomcat.conf.j2
     dest: /etc/init/tomcat.conf
   notify: tomcatrestart
   when: ansible_os_family == "Debian"
 
 - name: create the tomcat-user-xml  
-  tamplate:
+  template:
     src: tamplates/tomcat.tomcat-users.xml.j2
     dest: /opt/tomcat/conf/tomcat-users.xml
   notify: tomcatrestart
