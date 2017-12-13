@@ -29,9 +29,12 @@
     yum:
       name: "{{ redhatwebserver }}"
       state: present
-    notify:
-      httpdrestart
-      deployindex
+    when: ansible_os_family =="RedHat"
+  - name: deployindex of httpd
+    template:
+      src: index.j2
+      dest: /var/www/html/index.html
+    notify:  httpdrestart
     when: ansible_os_family =="RedHat"
     tags: httpdserver
   - name: install apache2 on ubuntu
@@ -41,7 +44,13 @@
     register: reg_apache_result
     notify: apacherestart
     when: ansible_os_family =="Debian"
-    tags: apacheserver
+  - name: deployindex of apache2
+    template:
+      src: index.j2
+      dest: /var/www/html/index.html
+    notify:  httpdrestart
+    when: ansible_os_family =="Debian"
+    tags: apacherestart
   - name:  dispaly the "{{ debugaval1 }}" 
     debug:
       msg: "{{ reg_apache_result }}"
@@ -49,7 +58,7 @@
   - name:  dispaly the "{{ debugaval2 }}" 
     set_fact: 
       set_facttest:  set fact vali is "{{ redhatwebserver }}"  
-    when: ansible_os_family =="Redhat"
+    when: ansible_os_family =="RedHat"
      
   - name:  dispaly the "{{ debugaval2 }}" 
     set_fact: 
@@ -62,7 +71,8 @@
   - name: file create 
     file: 
       path: /home/ansible/ansible.txt
-      sate: touch
+      state: touch
+      mode: 0777
   - name: copy passwd file file
     copy:
       src: /home/ansible/ansible.txt
@@ -77,10 +87,7 @@
     service:
       name: apache2
       state: present
-  - name: deployindex
-    template:
-      src: index.j2
-      dest: /var/www/html/index.html
+  
        
 
 
