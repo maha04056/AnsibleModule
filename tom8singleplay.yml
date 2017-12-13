@@ -6,7 +6,7 @@
     debugaval2: set facts
   gather_facts: yes
   tasks:
-  - name: install basic software for devlopments
+  - name: install basic software for devlopments for redhat
     yum:
       name: "{{ item }}"
     with_items:
@@ -15,7 +15,7 @@
       - wget
     ignore_errors: yes
     when: ansible_os_family =="RedHat"
-  - name: install basic software for devlopments
+  - name: install basic software for devlopments for debian
     apt:
       name: "{{ item }}"
     with_items:
