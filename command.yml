@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: for command get IDEOPOTENT
+    commnd: echo "test" > /home/ansible/test
+    args:
+      chdir:  /home/ansible
+      creates: /home/ansible/tt
+
