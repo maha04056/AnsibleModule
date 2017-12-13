@@ -13,4 +13,4 @@
   
 - name: for command get 2 IDEOPOTENT
   command: mv /home/ansible/foo.conf  /home/ansible/foo.dis
-    creates: /home/ansible/foo.dis
+  creates: /home/ansible/foo.dis
