@@ -1,60 +1,62 @@
+---
 - hosts: all
   become: yes
   vars:
     debugaval1: register data
     debugaval2: set facts
-  geather_facts: yes
+  gather_facts: yes
   tasks:
   - name: install basic software for devlopments
     yum:
-      name: {{items}}
+      name: "{{ item }}"
     with_items:
-      -git
-      -tree
-      -wget
+      - git
+      - tree
+      - wget
     ignore_errors: yes
-    tag: genralsoft
+    tags: genralsoft
   - name: install httpd on redhat
     yum:
-      name: "{{redhatwebserver}}"
+      name: "{{ redhatwebserver }}"
       state: present
     notify:
       httpdrestart
       deployindex
-    when: ansible_os_famly =="Redhat"
-    tag: httpdserver
+    when: ansible_os_famly =="RedHat"
+    tags: httpdserver
   - name: install apache2 on ubuntu
     apt:
       name: "{{ubuntuwervserver}}"
       state: present
-      when: ansible_os_family =="Debian"
     register: reg_apache_result
     notify: apacherestart
-    tag: apacheserver
-  - name:  dispaly the "{{debugaval1}}" 
+    when: ansible_os_family =="Debian"
+    tags: apacheserver
+  - name:  dispaly the "{{ debugaval1 }}" 
     debug:
-      msg: "{{reg_apache_result}}"
+      msg: "{{ reg_apache_result }}"
 
-  - name:  dispaly the "{{debugaval2}}" 
+  - name:  dispaly the "{{ debugaval2 }}" 
     set_fact: 
-      set_facttest:  set fact vali is "{{redhatwebserver}}"  
+      set_facttest:  set fact vali is "{{ redhatwebserver }}"  
     when: ansible_os_family =="Redhat"
      
-  - name:  dispaly the "{{debugaval2}}" 
+  - name:  dispaly the "{{ debugaval2 }}" 
     set_fact: 
-      set_facttest:  set fact vali is "{{redhatwebserver}}"  
+      set_facttest:  set fact vali is "{{ redhatwebserver }}"  
     when: ansible_os_family =="Debian"  
   
   - name:  dispaly the set_facttest values" 
     debug:
-      msg: "{{set_facttest}}"
+      msg: "{{ set_facttest }}"
   - name: file create 
     file: 
       path: /home/ansible/ansible.txt
-  - name: copy file
+      sate: touch
+  - name: copy passwd file file
     copy:
       src: /home/ansible/ansible.txt
-       dest: /etc/passwd
+      dest: /etc/passwd
 
   handlers:
   - name: httpdrestart
