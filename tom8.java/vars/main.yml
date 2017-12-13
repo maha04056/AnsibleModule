@@ -1,2 +1,5 @@
 ---
 # vars file for tom8.java
+
+javaversion_ubuntu14: default-jdk
+javaversion_rehaht7: java-1.7.0-openjdk-devel

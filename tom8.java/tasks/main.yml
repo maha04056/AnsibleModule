@@ -1,2 +1,26 @@
 ---
 # tasks file for tom8.java
+- name: redhat update packages 
+  yum:
+    name: '*'
+    sate: latest
+  when: ansible_os_family =="RedHat"
+
+- name: install  java on redhat {{ javaversion_rehaht7 }}
+  yum:
+    name: "{{ javaversion_rehaht7 }}"
+    state: present
+  when: ansible_os_family =="RedHat"
+
+- name: ubuntu  update packages
+  apt:
+    name: '*'
+    sate: latest
+  when: ansible_os_family =="Debian"
+
+
+- name: install  java on ubuntu {{ javaversion_ubuntu14 }}
+  yum:
+    name: "{{ javaversion_ubuntu14 }}"
+    state: present
+  when: ansible_os_family =="RedHat"
