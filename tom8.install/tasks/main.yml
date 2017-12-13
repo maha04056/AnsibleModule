@@ -13,13 +13,6 @@
     comment: tomuser
     home: /opt/tomcat
     state: present
-
-
-- name: download the tomacat binary tar file
-  get_url:
-    url: http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.0.48/bin/apache-tomcat-8.0.48.tar.gz
-    path: /home/ansible/apache-tomcat-8.0.48.tar.gz
-
 - name: create the directory
   file:
     path: /opt/tomcat
