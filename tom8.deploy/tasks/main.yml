@@ -4,6 +4,7 @@
 - name:  delete the existing QTtapti  folder and war
   file:
     path: /opt/tomcat/apache-tomcat-8.0.48/webapps/{{ item }}
+    state: absent
     recurse: true
   with_items:
     - /opt/tomcat/apache-tomcat-8.0.48/webapps/QTtapti-1.0.war
