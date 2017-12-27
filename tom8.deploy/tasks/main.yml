@@ -7,8 +7,8 @@
     state: absent
     recurse: true
   with_items:
-    - /opt/tomcat/apache-tomcat-8.0.48/webapps/QTtapti-1.0.war
-    - /opt/tomcat/apache-tomcat-8.0.48/webapps/QTtapti-1.0
+    - QTtapti-1.0.war
+    - QTtapti-1.0
    
 - name: Download QTtapti-1.0 war file
   get_url:
