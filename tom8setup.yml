@@ -3,5 +3,6 @@
   become: yes
   roles: 
   - tom8.java
-  - tom8.install
+  - {role: tom8.install, when: ansible_os_family ="RedHat"}
+  - {role: tom8.install, when: ansible_os_family ="Debian"}
   - tom8.deploy
