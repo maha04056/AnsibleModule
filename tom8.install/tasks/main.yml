@@ -17,7 +17,7 @@
   file:
     path: /opt/tomcat
     state: directory
-    mode: 0755
+    mode: 0777
 
 - name: Download file and force basic auth
   get_url:
