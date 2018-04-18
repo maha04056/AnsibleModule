@@ -18,6 +18,7 @@
     path: /opt/tomcat
     state: directory
     mode: 0777
+    recurse: true
 
 - name: Download file and force basic auth
   get_url:
