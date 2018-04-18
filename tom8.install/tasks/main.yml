@@ -34,6 +34,7 @@
 - name:  make the tomcat user the owner of the work, temp, and logs directories
   file:
     path: /opt/tomcat/apache-tomcat-8.0.50/{{ item }}
+    state: directory
     owner: tomcat
     group: tomcat
     recurse: true
@@ -49,26 +50,13 @@
     state: directory
     owner: tomcat
     group: tomcat 
-    mode: 0755
     recurse: true
 
 - name: the tomcat user write access to the conf directory, and read access to the files
   file:
     path: /opt/tomcat/apache-tomcat-8.0.50/conf
     state: directory
-    mode: "g+r"
-    recurse: true
-- name: the tomcat user write access to the conf directory, and read access to the files
-  file:
-    path: /opt/tomcat/apache-tomcat-8.0.50/conf
-    state: directory
-    mode: "g+x"
-    recurse: true
-- name: the tomcat user write access to the conf directory, and read access to the files
-  file:
-    path: /opt/tomcat/apache-tomcat-8.0.50/conf
-    state: directory
-    mode: "g+w"
+    mode: "g=rwx"
     recurse: true
 
 - name: create the tomcat.service RedHat
