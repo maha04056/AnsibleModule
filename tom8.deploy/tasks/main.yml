@@ -1,16 +1,7 @@
 ---
 # tasks file for tom8.deploy
-- name:  delete the existing QTtapti  folder and war
-  file:
-    path: /opt/tomcat/apache-tomcat-8.0.51/webapps/{{ item }}
-    state: absent
-    recurse: true
-  with_items:
-    - QTtapti-1.0.war
-    - QTtapti-1.0
-    - jenkins.war
-    - jenkins   
-    
+  
+
 - name: Download QTtapti-1.0 war file
   get_url:
     url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
